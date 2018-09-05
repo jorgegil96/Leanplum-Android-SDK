@@ -8,9 +8,9 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
     parameters {
-        string(name: 'BRANCH', defaultValue: 'pr/jenkinsPipeline',
+        string(name: 'BRANCH', defaultValue: 'master',
                 description: 'Branch to build')
-        choice(name: 'TYPE', choices: ['major', 'minor', 'release'],
+        choice(name: 'TYPE', choices: ['major', 'minor', 'patch'],
                 description: 'Which kind of release to start.')
     }
     stages {
