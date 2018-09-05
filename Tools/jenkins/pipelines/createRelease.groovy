@@ -32,6 +32,5 @@ def createRelease() {
             '-f ./Tools/jenkins/python.dockerfile .')
     pythonImage.inside {
         sh 'make release TYPE=${TYPE}'
-        sh 'git branch'
     }
 }
