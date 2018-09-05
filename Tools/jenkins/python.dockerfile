@@ -2,5 +2,5 @@ FROM python:2.7.15
 
 WORKDIR /tmp
 
-COPY requirements.txt ./
+COPY Tools/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt

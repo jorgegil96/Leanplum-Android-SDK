@@ -31,7 +31,7 @@ release:
 
 PYTHON_IMAGE=leanplum/android-tools-python
 python-image:
-	docker build -t ${PYTHON_IMAGE} Tools -f Tools/jenkins/python.dockerfile
+	docker build -t ${PYTHON_IMAGE} . -f Tools/jenkins/python.dockerfile
 
 python-image-shell: python-image
 	${DOCKER_RUN} ${PYTHON_IMAGE} bash
