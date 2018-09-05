@@ -4,11 +4,13 @@
 
 pipeline {
     agent { label 'base-lp-agent' }
+    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '',
+            numToKeepStr: '10'))
     parameters {
         string(name: 'BRANCH', defaultValue: 'pr/jenkinsPipeline',
                 description: 'Branch to build')
-        string(name: 'TYPE', defaultValue: 'PATCH',
-                description: 'Parameters to pass to deploy script')
+        choice(name: 'TYPE', choices: ['major', 'minor', 'release'],
+                description: 'Which kind of release to start.')
     }
     stages {
         stage('Create Release Branch') {
