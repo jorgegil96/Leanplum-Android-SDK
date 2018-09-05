@@ -9,6 +9,10 @@ DOCKER_RUN:=docker run \
 			--tty --interactive --rm \
 			--volume `pwd`:/leanplum \
 			--workdir /leanplum
+DOCKER_RUN_JENKINS:=docker run \
+			--interactive --rm \
+			--volume `pwd`:/leanplum \
+			--workdir /leanplum
 
 clean-local-properties:
 	rm -f local.properties
@@ -28,7 +32,7 @@ build-image:
 
 PYTHON_IMAGE=leanplum/android-tools-python
 release: python-image
-	${DOCKER_RUN} ${PYTHON_IMAGE} ./Tools/create-release.bash ${TYPE}
+	${DOCKER_RUN_JENKINS} ${PYTHON_IMAGE} ./Tools/create-release.bash ${TYPE}
 
 python-image:
 	docker build -t ${PYTHON_IMAGE} . -f Tools/jenkins/python.dockerfile
