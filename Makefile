@@ -26,10 +26,10 @@ build-image:
 	docker build -t ${SDK_BUILD_IMAGE} . -f Tools/jenkins/build.dockerfile
 	docker push ${SDK_BUILD_IMAGE}
 
-release:
-	./Tools/create-release.bash ${TYPE}
-
 PYTHON_IMAGE=leanplum/android-tools-python
+release: python-image
+	${DOCKER_RUN} ${PYTHON_IMAGE} ./Tools/create-release.bash ${TYPE}
+
 python-image:
 	docker build -t ${PYTHON_IMAGE} . -f Tools/jenkins/python.dockerfile
 
