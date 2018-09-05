@@ -31,6 +31,10 @@ def createRelease() {
             'leanplum/android-tools-python',
             '-f ./Tools/jenkins/python.dockerfile .')
     pythonImage.inside {
-        sh 'make release TYPE=${TYPE}'
+        // Need git credentials to push the branch.
+        withCredentials(
+                [sshUserPrivateKey(credentialsId: 'e442ecf0-e843-4e89-b9bf-894e4eef5a61')]) {
+            sh 'make release TYPE=${TYPE}'
+        }
     }
 }
