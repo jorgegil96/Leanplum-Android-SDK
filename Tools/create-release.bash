@@ -13,7 +13,9 @@ TYPE=$1
 release_version=$(./Tools/create-release.py ${TYPE})
 cat AndroidSDKCore/sdk-version.txt
 
-# create a branch, push on success
+git reset HEAD .
 git checkout -b "release/${release_version}"
-git branch
-git push --set-upstream origin "release/${release_version}"
+
+git add AndroidSDKCore/sdk-version.txt
+git commit -m "Created release ${release_version}"
+git push --set-upstream origin
