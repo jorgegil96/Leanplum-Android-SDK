@@ -4,8 +4,11 @@
 
 pipeline {
     agent { label 'base-lp-agent' }
-    buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '',
+    properties([
+        buildDiscarder(
+            logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '',
             numToKeepStr: '10'))
+        ])
     parameters {
         string(name: 'BRANCH', defaultValue: 'pr/jenkinsPipeline',
                 description: 'Branch to build')
