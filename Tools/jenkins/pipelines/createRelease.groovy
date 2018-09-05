@@ -4,7 +4,7 @@
 
 pipeline {
     agent { label 'base-lp-agent' }
-    properties([
+    options([
         buildDiscarder(
             logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '',
             numToKeepStr: '10'))
