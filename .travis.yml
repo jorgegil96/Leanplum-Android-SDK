@@ -28,4 +28,4 @@ cache:
     - which docker; echo
 
 script:
-  - make gradlewTravis
+  - make gradleTravis
